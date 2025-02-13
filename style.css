@@ -1,0 +1,13 @@
+.topbar
+{
+    height: 15vh;
+    width: 100vw;
+    
+}
+.centerheading
+{
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
