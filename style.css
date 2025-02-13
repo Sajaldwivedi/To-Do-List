@@ -16,6 +16,8 @@ body, html {
 }
 
 .centerheading {
+    font-family: fantasy;
+    color: white;
     font-size: 30px;
     margin: 0; 
 }
