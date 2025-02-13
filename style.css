@@ -2,13 +2,16 @@ body, html {
     margin: 0;
     padding: 0;
 }
-
+p{
+    margin-top: 0;
+}
 .topbar {
-    height: 10vh;
+    height: 12vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 30px;
     background: #52c234;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #061700, #52c234);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #061700, #52c234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -20,4 +23,13 @@ body, html {
     color: white;
     font-size: 30px;
     margin: 0; 
+}
+.bottompage
+{
+    background: #AAFFA9;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #11FFBD, #AAFFA9);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #11FFBD, #AAFFA9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    height: 100vh;
+    width: 100vw;
 }
