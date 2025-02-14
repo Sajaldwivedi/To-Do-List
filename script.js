@@ -26,7 +26,6 @@ function moveToCompletedList(task) {
 }
 
 function moveToToDoList(task) {
-    task.style.textDecoration = 'none';
     activitylist.appendChild(task);
     task.removeEventListener('click', function() {
         moveToToDoList(task);
