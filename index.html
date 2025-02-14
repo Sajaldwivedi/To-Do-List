@@ -9,21 +9,27 @@
 </head>
 <body>
 <nav class="topbar">
-    <p class="centerheading">
-        Your To-Do Companion
-    </p>
+    <p class="centerheading">Your To-Do Companion</p>
 </nav>
 <div class="bottompage">
-    <div class="leftpart">
-        <div class="tell">
-            <p>Activities To-Do:</p>
+    <div class="container">
+        <div class="leftpart">
+            <div class="tell-to-do">
+                <p>Activities To-Do:</p>
+            </div>
+            <div class="put">
+                <input type="text" id="putbox" placeholder="Enter Your Activity">
+                <button class="submitbutton">Add</button>
+            </div>
+            <div class="added-activities">
+                <ul class="activitylist"></ul>
+            </div>
         </div>
-        <div class="put">
-            <input type="text" id="putbox" placeholder="Enter Your Activity">
+        <div class="rightpart">
+            <div class="tell-done">Activities Done:</div>
         </div>
-        <div class="submitbutton"><button>Add</button></div>
     </div>
 </div>
-   <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
