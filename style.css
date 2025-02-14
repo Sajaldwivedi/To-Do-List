@@ -35,7 +35,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 15vh;
+    padding-top: 5vh;
 }
 
 .container {
@@ -54,8 +54,58 @@ p {
     min-height: 300px;
 }
 
-.leftpart {
+.leftpart, .rightpart {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: #ddd;
+    margin: 10px 0;
+}
+#putbox {
+    width: 100%;
+    max-width: 300px;
+    height: 45px;
+    border: 2px solid #56CCF2; /* Soft sky blue to match the page's gradient theme */
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f9fd; /* Very light pastel blue */
+    transition: all 0.3s ease-in-out;
+}
+
+#putbox:focus {
+    border-color: #56CCF2; /* Sky blue on focus */
+    background-color: #ffffff; /* White background on focus */
+    box-shadow: 0 0 10px rgba(86, 204, 242, 0.4); /* Light blue glow */
+    outline: none;
+}
+
+.submitbutton {
+    height: 50px;
+    padding: 0 25px;
+    border: none;
+    border-radius: 25px; /* Rounded corners for a soft look */
+    background: linear-gradient(135deg, #56CCF2, #6A84F5); /* Gradient from light blue to lavender */
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Removed transform effect */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.submitbutton:hover {
+    background: linear-gradient(135deg, #6A84F5, #56CCF2); /* Reverse gradient on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.submitbutton:active {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Maintain normal shadow on click */
+}
+
