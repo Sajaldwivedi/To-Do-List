@@ -1,10 +1,12 @@
-task=document.getElementById('task');
-button=document.getElementById('add');
-para=document.getElementById('addtask');
-function addtolist()
-{
-    console.log(task.value);
-    para.textContent=task.value;
+const newtask = document.getElementById('putbox');
+const submitbutton = document.getElementsByClassName('submitbutton')[0];
+const activitylist = document.getElementById('activitylist');
 
-};
-button.addEventListener('click',addtolist);
+submitbutton.addEventListener('click', function() {
+    if (newtask.value.trim() !== "") {
+        const li = document.createElement('li');
+        li.textContent = newtask.value;
+        activitylist.appendChild(li);
+        newtask.value = "";
+    }
+});
