@@ -33,3 +33,18 @@ p{
     height: 100vh;
     width: 100vw;
 }
+.bottompage
+{
+    
+    display: flex;
+    justify-content: center;
+
+}
+.leftpart
+{
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
