@@ -1,7 +1,8 @@
 const newtask = document.getElementById('putbox');
-const submitbutton = document.getElementsByClassName('submitbutton')[0];
+const submitbutton = document.querySelector('.submitbutton');
 const activitylist = document.getElementById('activitylist');
 const completedlist = document.getElementById('completedlist');
+const themeToggle = document.getElementById("themeToggle");
 
 function addTask() {
     if (newtask.value.trim() !== "") {
@@ -13,10 +14,8 @@ function addTask() {
     }
 }
 
-// Add task when "Add" button is clicked
 submitbutton.addEventListener('click', addTask);
 
-// Add task when "Enter" key is pressed
 newtask.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
         addTask();
@@ -25,7 +24,6 @@ newtask.addEventListener('keypress', function(event) {
 
 function toggleTaskStatus(event) {
     let task = event.target;
-    
     if (task.parentElement === activitylist) {
         completedlist.appendChild(task);
         task.style.textDecoration = "line-through";
@@ -38,3 +36,12 @@ function toggleTaskStatus(event) {
         task.style.fontStyle = "normal";
     }
 }
+
+themeToggle.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+    if (document.body.classList.contains("dark-mode")) {
+        themeToggle.textContent = "☀️ Light Mode";
+    } else {
+        themeToggle.textContent = "🌙 Dark Mode";
+    }
+});
