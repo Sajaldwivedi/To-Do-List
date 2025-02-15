@@ -3,12 +3,6 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to right, #11FFBD, #AAFFA9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
 }
 
 /* Topbar */
@@ -29,9 +23,11 @@ body, html {
     letter-spacing: 1px;
 }
 
-/* Container */
+/* Main Container */
 .bottompage {
-    width: 100%;
+    background: linear-gradient(to right, #11FFBD, #AAFFA9);
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -46,28 +42,29 @@ body, html {
     flex-wrap: wrap;
 }
 
-/* Left & Right Sections */
+/* Task Sections */
 .leftpart, .rightpart {
     width: 40%;
     background: white;
     padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     min-height: 350px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    transition: transform 0.3s ease-in-out;
 }
 
-.leftpart:hover, .rightpart:hover {
-    transform: scale(1.02);
+hr {
+    border: none;
+    height: 2px;
+    background-color: #ddd;
+    margin: 10px 0;
 }
 
-/* Section Titles */
 .tell-to-do, .tell-done {
     font-size: 22px;
-    font-weight: 600;
+    font-weight: bold;
     color: #333;
     text-align: center;
 }
@@ -104,16 +101,11 @@ body, html {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .submitbutton:hover {
     background: linear-gradient(135deg, #6A84F5, #56CCF2);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.submitbutton:active {
-    transform: scale(0.95);
 }
 
 /* Activity Lists */
@@ -132,17 +124,15 @@ body, html {
     justify-content: space-between;
     align-items: center;
     font-size: 18px;
-    font-weight: 500;
-    color: #444;
+    font-weight: 600;
+    color: #333;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
-    position: relative;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Hover Effects */
 #activitylist li:hover, #completedlist li:hover {
-    background: #e3f2ff;
-    transform: translateX(5px);
+    background: #f0f8ff;
+    transform: scale(1.02);
     cursor: pointer;
 }
 
@@ -150,27 +140,28 @@ body, html {
 #completedlist li {
     background: #d4f5c9;
     text-decoration: line-through;
-    color: #5a5a5a;
+    color: #4a4a4a;
     font-style: italic;
+    font-weight: 500;
 }
 
-/* Delete Button */
-.delete-btn {
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    padding: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.3s ease;
+/* Animation for list items */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.delete-btn:hover {
-    background: #ff1a1a;
+#activitylist li, #completedlist li {
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Responsiveness */
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
