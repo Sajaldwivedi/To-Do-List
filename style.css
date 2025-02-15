@@ -1,12 +1,14 @@
+/* General Styling */
 body, html {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
 
+/* Topbar */
 .topbar {
     height: 12vh;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,10 +23,10 @@ body, html {
     letter-spacing: 1px;
 }
 
+/* Page Layout */
 .bottompage {
     background: linear-gradient(to right, #11FFBD, #AAFFA9);
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -39,6 +41,7 @@ body, html {
     flex-wrap: wrap;
 }
 
+/* Task Sections */
 .leftpart, .rightpart {
     width: 40%;
     background: white;
@@ -65,10 +68,20 @@ hr {
     text-align: center;
 }
 
+/* Input and Button Container */
+.put {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+/* Input Box */
 #putbox {
-    width: 100%;
-    max-width: 350px;
-    height: 30px;
+    flex: 1;
+    max-width: 300px;
+    height: 32px;
     border: 2px solid #56CCF2;
     border-radius: 25px;
     padding: 10px 15px;
@@ -84,17 +97,19 @@ hr {
     outline: none;
 }
 
+/* Add Button */
 .submitbutton {
     height: 51px;
-    padding: 0 25px;
+    padding: 0 20px;
     border: none;
     border-radius: 25px;
     background: linear-gradient(135deg, #56CCF2, #6A84F5);
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    white-space: nowrap;
 }
 
 .submitbutton:hover {
@@ -102,6 +117,7 @@ hr {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* To-Do & Completed Lists */
 #activitylist, #completedlist {
     list-style-type: none;
     padding-left: 0;
@@ -129,7 +145,7 @@ hr {
     cursor: pointer;
 }
 
-/* Add list icons with proper spacing */
+/* List Icons */
 #activitylist li {
     position: relative;
     padding-left: 45px;
@@ -161,6 +177,7 @@ hr {
     color: #4a4a4a;
 }
 
+/* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -176,6 +193,7 @@ hr {
     animation: fadeIn 0.3s ease-in-out;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -185,5 +203,18 @@ hr {
     .leftpart, .rightpart {
         width: 100%;
         margin-bottom: 20px;
+    }
+
+    .put {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #putbox {
+        width: 100%;
+    }
+
+    .submitbutton {
+        width: 100%;
     }
 }
