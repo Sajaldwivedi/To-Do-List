@@ -173,36 +173,3 @@ hr {
         margin-bottom: 20px;
     }
 }
-/* Mark All as Completed Button */
-.complete-all-btn {
-    height: 35px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #ff8c00, #ff4500);
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    padding: 8px;
-    text-align: center;
-    width: 60%;
-    align-self: center;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    display: none; /* Initially hidden */
-}
-
-.complete-all-btn:hover {
-    background: linear-gradient(135deg, #ff4500, #ff8c00);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-.complete-all-btn:active {
-    transform: scale(0.97);
-}
-
-/* Show button when required */
-.hidden {
-    display: none;
-}

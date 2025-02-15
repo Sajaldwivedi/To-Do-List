@@ -14,6 +14,7 @@ submitbutton.addEventListener('click', function() {
         });
         activitylist.appendChild(li);
         newtask.value = "";
+        updateMarkAllButton(); // Check if the button should be shown
     }
 });
 
@@ -29,6 +30,7 @@ function moveToCompletedList(task) {
     task.addEventListener('click', function() {
         moveToToDoList(task);
     });
+    updateMarkAllButton(); // Check if the button should be hidden
 }
 
 // Move a single task back to To-Do
@@ -37,6 +39,7 @@ function moveToToDoList(task) {
     task.style.textDecoration = "none";
     task.style.color = "#333";
     task.style.fontStyle = "normal";
+    updateMarkAllButton(); // Check if the button should be shown
 }
 
 // Move all tasks to completed
@@ -45,4 +48,14 @@ markAllCompleted.addEventListener('click', function() {
         let task = activitylist.firstChild;
         moveToCompletedList(task);
     }
+    updateMarkAllButton(); // Check if the button should be hidden
 });
+
+// Show/hide "Mark All as Completed" button based on task count
+function updateMarkAllButton() {
+    if (activitylist.children.length >= 2) {
+        markAllCompleted.classList.remove("hidden");
+    } else {
+        markAllCompleted.classList.add("hidden");
+    }
+}
