@@ -2,15 +2,16 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .topbar {
     height: 12vh;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 70px;
     background: linear-gradient(135deg, #061700, #52c234);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -38,8 +39,7 @@ body, html {
 
 .bottompage {
     background: linear-gradient(to right, #11FFBD, #AAFFA9);
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -64,6 +64,7 @@ body, html {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 hr {
@@ -78,12 +79,13 @@ hr {
     font-weight: bold;
     color: #333;
     text-align: center;
+    transition: color 0.3s ease-in-out;
 }
 
 #putbox {
     width: 100%;
     max-width: 350px;
-    height: 30px;
+    height: 40px;
     border: 2px solid #56CCF2;
     border-radius: 25px;
     padding: 10px 15px;
@@ -93,7 +95,7 @@ hr {
 }
 
 .submitbutton {
-    height: 51px;
+    height: 50px;
     padding: 0 25px;
     border: none;
     border-radius: 25px;
@@ -140,18 +142,33 @@ hr {
     margin-right: 10px;
 }
 
+/* Dark Mode Styling */
 .dark-mode {
     background-color: #222;
     color: white;
 }
 
-.dark-mode .leftpart, .dark-mode .rightpart {
+.dark-mode .topbar {
     background: #333;
+}
+
+.dark-mode .leftpart, .dark-mode .rightpart {
+    background: #444;
     color: white;
 }
 
-.dark-mode #putbox, .dark-mode #activitylist li, .dark-mode #completedlist li {
-    background: #444;
+.dark-mode .tell-to-do, .dark-mode .tell-done {
+    color: white;
+}
+
+.dark-mode #putbox {
+    background: #555;
+    color: white;
+    border-color: #aaa;
+}
+
+.dark-mode #activitylist li, .dark-mode #completedlist li {
+    background: #555;
     color: white;
 }
 
