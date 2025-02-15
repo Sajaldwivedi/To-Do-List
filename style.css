@@ -2,16 +2,14 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .topbar {
     height: 12vh;
-    width: 100%;
+    width: 100vw;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0 70px;
     background: linear-gradient(135deg, #061700, #52c234);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -20,26 +18,13 @@ body, html {
     color: white;
     font-size: 32px;
     font-weight: 700;
-}
-
-#themeToggle {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 20px;
-    background: #ffffff;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-#themeToggle:hover {
-    background: #ddd;
+    letter-spacing: 1px;
 }
 
 .bottompage {
     background: linear-gradient(to right, #11FFBD, #AAFFA9);
-    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -64,7 +49,6 @@ body, html {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 hr {
@@ -79,13 +63,12 @@ hr {
     font-weight: bold;
     color: #333;
     text-align: center;
-    transition: color 0.3s ease-in-out;
 }
 
 #putbox {
     width: 100%;
     max-width: 350px;
-    height: 40px;
+    height: 30px;
     border: 2px solid #56CCF2;
     border-radius: 25px;
     padding: 10px 15px;
@@ -94,8 +77,15 @@ hr {
     transition: all 0.3s ease-in-out;
 }
 
+#putbox:focus {
+    border-color: #56CCF2;
+    background-color: white;
+    box-shadow: 0 0 12px rgba(86, 204, 242, 0.5);
+    outline: none;
+}
+
 .submitbutton {
-    height: 50px;
+    height: 51px;
     padding: 0 25px;
     border: none;
     border-radius: 25px;
@@ -105,6 +95,11 @@ hr {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+}
+
+.submitbutton:hover {
+    background: linear-gradient(135deg, #6A84F5, #56CCF2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 #activitylist, #completedlist {
@@ -118,6 +113,9 @@ hr {
     border-radius: 12px;
     padding: 15px;
     margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 18px;
     font-weight: 600;
     color: #333;
@@ -125,9 +123,24 @@ hr {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+#activitylist li:hover, #completedlist li:hover {
+    background: #f0f8ff;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+/* Add list icons with proper spacing */
+#activitylist li {
+    position: relative;
+    padding-left: 45px;
+}
+
 #activitylist li::before {
     content: "📌";
-    margin-right: 10px;
+    position: absolute;
+    left: 10px;
+    font-size: 20px;
+    color: #333;
 }
 
 #completedlist li {
@@ -135,43 +148,42 @@ hr {
     text-decoration: line-through;
     color: #4a4a4a;
     font-style: italic;
+    font-weight: 500;
+    position: relative;
+    padding-left: 45px;
 }
 
 #completedlist li::before {
     content: "✅";
-    margin-right: 10px;
+    position: absolute;
+    left: 10px;
+    font-size: 20px;
+    color: #4a4a4a;
 }
 
-/* Dark Mode Styling */
-.dark-mode {
-    background-color: #222;
-    color: white;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.dark-mode .topbar {
-    background: #333;
+#activitylist li, #completedlist li {
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-.dark-mode .leftpart, .dark-mode .rightpart {
-    background: #444;
-    color: white;
-}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 90%;
+    }
 
-.dark-mode .tell-to-do, .dark-mode .tell-done {
-    color: white;
-}
-
-.dark-mode #putbox {
-    background: #555;
-    color: white;
-    border-color: #aaa;
-}
-
-.dark-mode #activitylist li, .dark-mode #completedlist li {
-    background: #555;
-    color: white;
-}
-
-.dark-mode .submitbutton {
-    background: #888;
+    .leftpart, .rightpart {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
