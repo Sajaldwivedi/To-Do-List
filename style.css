@@ -1,34 +1,37 @@
+/* General Styling */
 body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #11FFBD, #AAFFA9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
-p {
-    margin-top: 0;
-}
-
+/* Topbar */
 .topbar {
     height: 12vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    background: linear-gradient(to right, #061700, #52c234);
+    background: linear-gradient(135deg, #061700, #52c234);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .centerheading {
     color: white;
-    font-size: 30px;
-    margin: 0;
-    font-weight: 600;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
+/* Container */
 .bottompage {
-    background: linear-gradient(to right, #11FFBD, #AAFFA9);
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -38,49 +41,58 @@ p {
 .container {
     display: flex;
     gap: 40px;
-    width: 80vw;
+    width: 75vw;
     justify-content: center;
     flex-wrap: wrap;
 }
 
+/* Left & Right Sections */
 .leftpart, .rightpart {
     width: 40%;
     background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    min-height: 300px;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    min-height: 350px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    transition: transform 0.3s ease-in-out;
 }
 
-hr {
-    border: none;
-    height: 2px;
-    background-color: #ddd;
-    margin: 10px 0;
+.leftpart:hover, .rightpart:hover {
+    transform: scale(1.02);
 }
 
+/* Section Titles */
+.tell-to-do, .tell-done {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+/* Input Box */
 #putbox {
     width: 100%;
     max-width: 350px;
-    height: 35px;
+    height: 45px;
     border: 2px solid #56CCF2;
     border-radius: 25px;
     padding: 10px 15px;
-    font-size: 16px;
+    font-size: 18px;
     background-color: #f4f9fd;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 #putbox:focus {
     border-color: #56CCF2;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(86, 204, 242, 0.4);
+    background-color: white;
+    box-shadow: 0 0 12px rgba(86, 204, 242, 0.5);
     outline: none;
 }
 
+/* Add Button */
 .submitbutton {
     height: 45px;
     padding: 0 25px;
@@ -91,54 +103,50 @@ hr {
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .submitbutton:hover {
     background: linear-gradient(135deg, #6A84F5, #56CCF2);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .submitbutton:active {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: scale(0.95);
 }
 
-.leftpart .tell-to-do, .rightpart .tell-done {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-/* Updated To-Do List and Completed List Styling */
+/* Activity Lists */
 #activitylist, #completedlist {
     list-style-type: none;
     padding-left: 0;
+    margin-top: 10px;
 }
 
 #activitylist li, #completedlist li {
     background: #ffffff;
-    border-radius: 8px;
-    padding: 12px 15px;
-    margin-bottom: 10px;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 18px;
     font-weight: 500;
-    font-family: 'Roboto', sans-serif;
-    color: #333;
-    transition: all 0.3s ease;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    color: #444;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
+/* Hover Effects */
 #activitylist li:hover, #completedlist li:hover {
-    background: #e8f6fd;
-    transform: scale(1.02);
+    background: #e3f2ff;
+    transform: translateX(5px);
     cursor: pointer;
 }
 
+/* Completed List Styling */
 #completedlist li {
     background: #d4f5c9;
     text-decoration: line-through;
@@ -146,11 +154,23 @@ hr {
     font-style: italic;
 }
 
-.completed-activities {
-    padding-top: 20px;
+/* Delete Button */
+.delete-btn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
 }
 
-/* Media query for responsiveness */
+.delete-btn:hover {
+    background: #ff1a1a;
+}
+
+/* Responsiveness */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
