@@ -3,42 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do-List</title>
-    <link rel="shortcut icon" href="Images/favicon-32x32.png" type="image/x-icon">
+    <title>To-Do List</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav class="topbar">
-    <p class="centerheading">Your To-Do Companion</p>
-</nav>
-<div class="bottompage">
-    <div class="container">
-        <div class="leftpart">
-            <div class="tell-to-do">
-                <p>Activities To-Do:</p>
-                <hr>
+    <nav class="topbar">
+        <p class="centerheading">Your To-Do Companion</p>
+    </nav>
+    <div class="bottompage">
+        <div class="container">
+            <div class="leftpart">
+                <div class="tell-to-do">
+                    <p>Activities To-Do:</p>
+                    <hr>
+                </div>
+                <div class="put">
+                    <input type="text" id="putbox" placeholder="Enter Your Activity">
+                    <button class="submitbutton">Add</button>
+                </div>
+                <button id="markAllCompleted" class="complete-all-btn">Mark All as Completed</button>
+                <div class="added-activities">
+                    <ul id="activitylist"></ul>
+                </div>
             </div>
-            <div class="put">
-                <input type="text" id="putbox" placeholder="Enter Your Activity">
-                <button class="submitbutton">Add</button>
-            </div>
-            <div class="added-activities">
-                <ul id="activitylist"></ul>
+            
+            <div class="rightpart">
+                <div class="tell-done">
+                    <p>Completed Activities:</p>
+                    <hr>
+                </div>
+                <div class="completed-activities">
+                    <ul id="completedlist"></ul>
+                </div>
             </div>
         </div>
-        
-        <div class="rightpart">
-            <div class="tell-done">
-                <p>Completed Activities:</p>
-                <hr>
-            </div>
-            <div class="completed-activities">
-                <ul id="completedlist"></ul>
-            </div>
-        </div>
-        
     </div>
-</div>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
