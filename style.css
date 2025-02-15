@@ -85,7 +85,7 @@ hr {
 #putbox {
     flex: 1;
     max-width: 320px;
-    height: 42px;
+    height: 33px;
     border: 2px solid #56CCF2;
     border-radius: 25px;
     padding: 10px 15px;
@@ -103,7 +103,7 @@ hr {
 
 /* Add Button */
 .submitbutton {
-    height: 44px;
+    height: 51px;
     padding: 0 20px;
     border: none;
     border-radius: 25px;
