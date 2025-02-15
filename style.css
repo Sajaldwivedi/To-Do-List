@@ -129,16 +129,18 @@ hr {
     cursor: pointer;
 }
 
+/* Add list icons with proper spacing */
 #activitylist li {
     position: relative;
-    padding-left: 30px;
+    padding-left: 45px;
 }
 
 #activitylist li::before {
     content: "📌";
     position: absolute;
     left: 10px;
-    font-size: 18px;
+    font-size: 20px;
+    color: #333;
 }
 
 #completedlist li {
@@ -148,14 +150,15 @@ hr {
     font-style: italic;
     font-weight: 500;
     position: relative;
-    padding-left: 30px;
+    padding-left: 45px;
 }
 
 #completedlist li::before {
     content: "✅";
     position: absolute;
     left: 10px;
-    font-size: 18px;
+    font-size: 20px;
+    color: #4a4a4a;
 }
 
 @keyframes fadeIn {
