@@ -1,11 +1,9 @@
-/* General Styling */
 body, html {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
 
-/* Topbar */
 .topbar {
     height: 12vh;
     width: 100vw;
@@ -23,7 +21,6 @@ body, html {
     letter-spacing: 1px;
 }
 
-/* Main Container */
 .bottompage {
     background: linear-gradient(to right, #11FFBD, #AAFFA9);
     height: 100vh;
@@ -42,7 +39,6 @@ body, html {
     flex-wrap: wrap;
 }
 
-/* Task Sections */
 .leftpart, .rightpart {
     width: 40%;
     background: white;
@@ -69,7 +65,6 @@ hr {
     text-align: center;
 }
 
-/* Input Box */
 #putbox {
     width: 100%;
     max-width: 350px;
@@ -89,7 +84,6 @@ hr {
     outline: none;
 }
 
-/* Add Button */
 .submitbutton {
     height: 51px;
     padding: 0 25px;
@@ -108,7 +102,6 @@ hr {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Activity Lists */
 #activitylist, #completedlist {
     list-style-type: none;
     padding-left: 0;
@@ -136,16 +129,35 @@ hr {
     cursor: pointer;
 }
 
-/* Completed List Styling */
+#activitylist li {
+    position: relative;
+    padding-left: 30px;
+}
+
+#activitylist li::before {
+    content: "📌";
+    position: absolute;
+    left: 10px;
+    font-size: 18px;
+}
+
 #completedlist li {
     background: #d4f5c9;
     text-decoration: line-through;
     color: #4a4a4a;
     font-style: italic;
     font-weight: 500;
+    position: relative;
+    padding-left: 30px;
 }
 
-/* Animation for list items */
+#completedlist li::before {
+    content: "✅";
+    position: absolute;
+    left: 10px;
+    font-size: 18px;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -161,7 +173,6 @@ hr {
     animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
