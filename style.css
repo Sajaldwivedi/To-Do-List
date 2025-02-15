@@ -111,45 +111,39 @@ hr {
     margin-bottom: 10px;
 }
 
-.activitylist, .completed-list {
+/* Updated To-Do List and Completed List Styling */
+#activitylist, #completedlist {
     list-style-type: none;
     padding-left: 0;
 }
 
-.activitylist li, .completed-list li {
-    background: #f4f9fd;
+#activitylist li, #completedlist li {
+    background: #ffffff;
     border-radius: 8px;
     padding: 12px 15px;
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
     transition: all 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.activitylist li:hover, .completed-list li:hover {
+#activitylist li:hover, #completedlist li:hover {
     background: #e8f6fd;
+    transform: scale(1.02);
     cursor: pointer;
 }
 
-.activitylist li .delete-btn, .completed-list li .delete-btn {
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    padding: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.3s ease;
-}
-
-.activitylist li .delete-btn:hover, .completed-list li .delete-btn:hover {
-    background: #ff1a1a;
-}
-
-.completed-list li {
-    background: #e8f6fd;
+#completedlist li {
+    background: #d4f5c9;
     text-decoration: line-through;
+    color: #5a5a5a;
+    font-style: italic;
 }
 
 .completed-activities {
