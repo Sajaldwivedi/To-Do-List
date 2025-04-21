@@ -3,10 +3,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { addTask as addTaskToDb, getUserTasks, updateTask, deleteTask, toggleTask as toggleTaskInDb, Task as DbTask } from "@/lib/tasks";
 import { Timestamp } from 'firebase/firestore';
 
-export interface Task extends Omit<DbTask, 'createdAt' | 'completedAt'> {
-  createdAt: Timestamp;
-  completedAt?: Timestamp;
-}
+export interface Task extends DbTask {}
 
 export function useTasks(initialTasks: Task[] = [], category: string = "today") {
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
@@ -59,7 +56,12 @@ export function useTasks(initialTasks: Task[] = [], category: string = "today") 
         userId: user.uid
       });
       console.log('Added task:', newTask);
-      setTasks(prev => [newTask as Task, ...prev]);
+      const taskWithTimestamp = {
+        ...newTask,
+        createdAt: Timestamp.now(),
+        completedAt: null
+      };
+      setTasks(prev => [taskWithTimestamp as Task, ...prev]);
       setError(null);
     } catch (err) {
       console.error('Error adding task:', err);
@@ -91,7 +93,11 @@ export function useTasks(initialTasks: Task[] = [], category: string = "today") 
       
       setTasks(prev =>
         prev.map(t =>
-          t.id === id ? { ...t, completed: newCompleted } : t
+          t.id === id ? { 
+            ...t, 
+            completed: newCompleted,
+            completedAt: newCompleted ? Timestamp.now() : null
+          } : t
         )
       );
     } catch (err) {

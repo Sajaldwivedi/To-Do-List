@@ -30,28 +30,37 @@ export function TaskHistory({ isOpen, onClose, category }: {
     const fetchHistory = async () => {
       if (!user) return;
 
-      const tasksRef = collection(db, 'tasks');
-      const q = query(
-        tasksRef,
-        where('userId', '==', user.uid),
-        where('category', '==', category),
-        orderBy('createdAt', 'desc')
-      );
+      try {
+        console.log('Fetching history for user:', user.uid, 'category:', category);
+        const tasksRef = collection(db, 'tasks');
+        const q = query(
+          tasksRef,
+          where('userId', '==', user.uid),
+          where('category', '==', category),
+          orderBy('createdAt', 'desc')
+        );
 
-      const querySnapshot = await getDocs(q);
-      const tasks: TaskHistory[] = [];
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        tasks.push({
-          id: doc.id,
-          title: data.title,
-          completed: data.completed,
-          createdAt: data.createdAt.toDate(),
-          completedAt: data.completedAt?.toDate(),
+        const querySnapshot = await getDocs(q);
+        const tasks: TaskHistory[] = [];
+        console.log('Found tasks:', querySnapshot.size);
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          console.log('Task data:', data);
+          tasks.push({
+            id: doc.id,
+            title: data.title,
+            completed: data.completed,
+            createdAt: data.createdAt.toDate(),
+            completedAt: data.completedAt?.toDate(),
+          });
         });
-      });
 
-      setHistory(tasks);
+        console.log('Processed tasks:', tasks);
+        setHistory(tasks);
+      } catch (error) {
+        console.error('Error fetching history:', error);
+      }
     };
 
     if (isOpen) {
@@ -64,10 +73,17 @@ export function TaskHistory({ isOpen, onClose, category }: {
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle>Task History - {category}</DialogTitle>
+          <p className="text-sm text-muted-foreground">
+            View all your tasks and their completion status in the {category} category.
+          </p>
         </DialogHeader>
         <ScrollArea className="h-[400px] pr-4">
           <div className="space-y-4">
-            {history.map((task) => (
+            {history.length === 0 ? (
+              <div className="text-center py-8 text-muted-foreground">
+                No tasks found in this category.
+              </div>
+            ) : history.map((task) => (
               <div
                 key={task.id}
                 className={`p-4 border rounded-lg ${task.completed ? 'bg-green-50' : 'bg-background'}`}
