@@ -20,8 +20,8 @@ export function useTasks(initialTasks: Task[] = [], category: string = "today") 
         return;
       }
 
-      // Add a small delay to ensure auth is fully initialized
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Small delay to ensure auth is ready
+      await new Promise(resolve => setTimeout(resolve, 100));
 
       try {
         console.log('Fetching tasks for user:', user.uid, 'category:', category);
@@ -47,25 +47,45 @@ export function useTasks(initialTasks: Task[] = [], category: string = "today") 
       return;
     }
 
+    const optimisticId = `temp-${Date.now()}`;
+    const now = Timestamp.now();
+
     try {
-      console.log('Adding task for user:', user.uid, 'category:', category);
-      const newTask = await addTaskToDb({
+      // Create optimistic task
+      const optimisticTask: Task = {
+        id: optimisticId,
+        title,
+        completed: false,
+        category,
+        userId: user.uid,
+        createdAt: now,
+        completedAt: null
+      };
+
+      // Update UI immediately
+      setTasks(prev => [optimisticTask, ...prev]);
+      setError(null);
+
+      // Save to Firebase in background
+      console.log('Adding task to Firebase:', title);
+      const savedTask = await addTaskToDb({
         title,
         completed: false,
         category,
         userId: user.uid
       });
-      console.log('Added task:', newTask);
-      const taskWithTimestamp = {
-        ...newTask,
-        createdAt: Timestamp.now(),
-        completedAt: null
-      };
-      setTasks(prev => [taskWithTimestamp as Task, ...prev]);
-      setError(null);
+
+      console.log('Task saved to Firebase:', savedTask);
+
+      // Replace optimistic task with real one
+      setTasks(prev => prev.map(t => 
+        t.id === optimisticId ? { ...savedTask, createdAt: now } : t
+      ));
     } catch (err) {
       console.error('Error adding task:', err);
       setError('Failed to add task');
+      // Remove optimistic task on error
+      setTasks(prev => prev.filter(t => t.id !== optimisticId));
     }
   };
 
