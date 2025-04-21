@@ -9,6 +9,8 @@ export interface Task {
   userId: string;
   createdAt: Timestamp;
   completedAt?: Timestamp;
+  archived?: boolean;
+  archivedAt?: Timestamp;
 }
 
 export async function addTask(task: Omit<Task, 'id' | 'createdAt'>) {
@@ -33,14 +35,22 @@ export async function addTask(task: Omit<Task, 'id' | 'createdAt'>) {
   }
 }
 
-export async function getUserTasks(userId: string, category: string) {
+export async function getUserTasks(userId: string, category: string, includeArchived: boolean = false) {
   try {
-    console.log('Getting tasks for user:', userId, 'category:', category);
+    console.log('Getting tasks for user:', userId, 'category:', category, 'includeArchived:', includeArchived);
     const tasksRef = collection(db, 'tasks');
+    const conditions = [
+      where('userId', '==', userId),
+      where('category', '==', category)
+    ];
+    
+    if (!includeArchived) {
+      conditions.push(where('archived', '!=', true));
+    }
+
     const q = query(
       tasksRef,
-      where('userId', '==', userId),
-      where('category', '==', category),
+      ...conditions,
       orderBy('createdAt', 'desc')
     );
 
@@ -54,11 +64,13 @@ export async function getUserTasks(userId: string, category: string) {
       tasks.push({
         id: doc.id,
         title: data.title,
-        completed: data.completed,
+        completed: Boolean(data.completed),
         category: data.category,
         userId: data.userId,
         createdAt: data.createdAt,
         completedAt: data.completedAt,
+        archived: Boolean(data.archived),
+        archivedAt: data.archivedAt
       });
     });
 
@@ -88,14 +100,17 @@ export async function updateTask(taskId: string, updates: Partial<Task>) {
   }
 }
 
-export async function deleteTask(taskId: string) {
+export async function archiveTask(taskId: string) {
   try {
-    console.log('Deleting task:', taskId);
+    console.log('Archiving task:', taskId);
     const taskRef = doc(db, 'tasks', taskId);
-    await deleteDoc(taskRef);
-    console.log('Task deleted successfully');
+    await updateDoc(taskRef, {
+      archived: true,
+      archivedAt: Timestamp.now()
+    });
+    console.log('Task archived successfully');
   } catch (error) {
-    console.error('Error deleting task:', error);
+    console.error('Error archiving task:', error);
     throw error;
   }
 }
@@ -103,10 +118,14 @@ export async function deleteTask(taskId: string) {
 export async function toggleTask(taskId: string, completed: boolean) {
   try {
     console.log('Toggling task:', taskId, 'completed:', completed);
-    await updateTask(taskId, {
+    const taskRef = doc(db, 'tasks', taskId);
+    const now = Timestamp.now();
+    
+    await updateDoc(taskRef, {
       completed,
-      completedAt: completed ? Timestamp.now() : null
+      completedAt: completed ? now : null
     });
+    
     console.log('Task toggled successfully');
   } catch (error) {
     console.error('Error toggling task:', error);

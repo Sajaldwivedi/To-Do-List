@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { addTask as addTaskToDb, getUserTasks, updateTask, deleteTask, toggleTask as toggleTaskInDb, Task as DbTask } from "@/lib/tasks";
+import { addTask as addTaskToDb, getUserTasks, updateTask, archiveTask, toggleTask as toggleTaskInDb, Task as DbTask } from "@/lib/tasks";
 import { Timestamp } from 'firebase/firestore';
 
 export interface Task extends DbTask {}
@@ -73,11 +73,11 @@ export function useTasks(initialTasks: Task[] = [], category: string = "today") 
     if (!user) return;
 
     try {
-      await deleteTask(id);
+      await archiveTask(id);
       setTasks(prev => prev.filter(t => t.id !== id));
     } catch (err) {
-      console.error('Error removing task:', err);
-      setError('Failed to remove task');
+      console.error('Error archiving task:', err);
+      setError('Failed to archive task');
     }
   };
 
@@ -89,8 +89,8 @@ export function useTasks(initialTasks: Task[] = [], category: string = "today") 
       if (!task) return;
 
       const newCompleted = !task.completed;
-      await toggleTaskInDb(id, newCompleted);
       
+      // Update local state first
       setTasks(prev =>
         prev.map(t =>
           t.id === id ? { 
@@ -100,9 +100,23 @@ export function useTasks(initialTasks: Task[] = [], category: string = "today") 
           } : t
         )
       );
+
+      // Then update Firestore
+      await toggleTaskInDb(id, newCompleted);
+
+      console.log('Task toggled:', { id, completed: newCompleted });
     } catch (err) {
       console.error('Error toggling task:', err);
       setError('Failed to update task');
+      // Revert local state on error
+      const task = tasks.find(t => t.id === id);
+      if (task) {
+        setTasks(prev =>
+          prev.map(t =>
+            t.id === id ? { ...task } : t
+          )
+        );
+      }
     }
   };
 
