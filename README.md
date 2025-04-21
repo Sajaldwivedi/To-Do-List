@@ -1,70 +1,73 @@
-Here’s the updated **README** file without the screenshots section:
+# Welcome to your Lovable project
 
----
+## Project info
 
-# To-Do List App
+**URL**: https://lovable.dev/projects/bcad2761-5cdd-42ec-9983-7d268a4a5ade
 
-A simple and interactive **To-Do List** web application where you can add tasks, mark them as completed, and move them back to the **To-Do List**. This app allows users to track their activities with the ability to toggle tasks between **To-Do** and **Completed** lists.
+## How can I edit this code?
 
----
+There are several ways of editing your application.
 
-## Features
+**Use Lovable**
 
-- **Add Tasks**: Users can input tasks and add them to the **To-Do List**.
-- **Move Tasks to Completed**: Tasks in the **To-Do List** can be clicked to move to the **Completed List**.
-- **Move Tasks Back to To-Do**: Tasks in the **Completed List** can be clicked to move back to the **To-Do List**.
-- **Interactive UI**: Smooth transitions and hover effects for a better user experience.
-  
----
+Simply visit the [Lovable Project](https://lovable.dev/projects/bcad2761-5cdd-42ec-9983-7d268a4a5ade) and start prompting.
 
-## Technologies Used
+Changes made via Lovable will be committed automatically to this repo.
 
-- **HTML5**: Used for structuring the web page.
-- **CSS3**: For styling and animations.
-- **JavaScript**: To handle the dynamic interaction and logic of adding tasks and toggling between lists.
+**Use your preferred IDE**
 
----
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-## Installation
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-1. Clone the repository to your local machine using the following command:
-   ```bash
-   git clone https://github.com/your-username/todo-list-app.git
-   ```
+Follow these steps:
 
-2. Navigate to the project folder:
-   ```bash
-   cd todo-list-app
-   ```
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
 
-3. Open the `index.html` file in your browser to view the app.
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
 
----
+# Step 3: Install the necessary dependencies.
+npm i
 
-## Usage
+# Step 4: Start the development server with auto-reloading and an instant preview.
+npm run dev
+```
 
-1. Enter a task in the input box at the top of the page.
-2. Click the **"Add"** button to add the task to your **To-Do List**.
-3. Click on a task to move it to the **Completed List**.
-4. Click on a completed task to move it back to the **To-Do List**.
-5. The task will display a strike-through when marked as completed.
+**Edit a file directly in GitHub**
 
----
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-## Contributing
+**Use GitHub Codespaces**
 
-1. Fork this repository.
-2. Create your feature branch (`git checkout -b feature-name`).
-3. Commit your changes (`git commit -m 'Add new feature'`).
-4. Push to the branch (`git push origin feature-name`).
-5. Create a new Pull Request.
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
----
+## What technologies are used for this project?
 
-## License
+This project is built with:
 
-This project is open-source and available under the [MIT License](LICENSE).
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
----
+## How can I deploy this project?
 
-Feel free to adjust any sections or add more details as necessary! 😊
+Simply open [Lovable](https://lovable.dev/projects/bcad2761-5cdd-42ec-9983-7d268a4a5ade) and click on Share -> Publish.
+
+## Can I connect a custom domain to my Lovable project?
+
+Yes, you can!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)

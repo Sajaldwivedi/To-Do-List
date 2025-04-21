@@ -1,44 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>To-Do List</title>
-        <link rel="shortcut icon" href="Images/favicon-32x32.png" type="image/x-icon">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    
-<body>
-    <nav class="topbar">
-        <p class="centerheading">Your To-Do Companion</p>
-    </nav>
-    <div class="bottompage">
-        <div class="container">
-            <div class="leftpart">
-                <div class="tell-to-do">
-                    <p>Tasks To-Do:</p>
-                    <hr>
-                </div>
-                <div class="put">
-                    <input type="text" id="putbox" placeholder="Enter Your Activity">
-                    <button class="submitbutton">Add</button>
-                </div>
-                <div class="added-activities">
-                    <ul id="activitylist"></ul>
-                </div>
-            </div>
-            
-            <div class="rightpart">
-                <div class="tell-done">
-                    <p>Completed Tasks:</p>
-                    <hr>
-                </div>
-                <div class="completed-activities">
-                    <ul id="completedlist"></ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>✨ Todo Magic ✨</title>
+    <meta name="description" content="Lovable Generated Project" />
+    <meta name="author" content="Lovable" />
+
+    <meta property="og:title" content="cosmic-todo-canvas" />
+    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
