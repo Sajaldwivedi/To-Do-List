@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { MoreVertical } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface CategoryCardProps {
   id: string;
@@ -14,8 +15,22 @@ interface CategoryCardProps {
 }
 
 export function CategoryCard({ id, name, count, icon: Icon, path }: CategoryCardProps) {
+  const navigate = useNavigate();
+  
+  const handleClick = (e: React.MouseEvent) => {
+    // Prevent default Link behavior
+    e.preventDefault();
+    // Navigate programmatically
+    navigate(path);
+  };
+
   return (
-    <Link to={path} className="task-card relative group">
+    <Link 
+      to={path} 
+      className="task-card relative group" 
+      onClick={handleClick}
+      onTouchStart={handleClick} // Add touch event handler
+    >
       <div className={cn(
         "icon-container",
         id === "today" && "bg-yellow-100",
@@ -38,7 +53,12 @@ export function CategoryCard({ id, name, count, icon: Icon, path }: CategoryCard
       <div className="flex-1">
         <h3 className="font-medium">{name}</h3>
       </div>
-      <Button variant="ghost" size="icon" className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity">
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity"
+        onClick={(e) => e.stopPropagation()} // Prevent navigation when clicking the button
+      >
         <MoreVertical className="h-5 w-5" />
       </Button>
     </Link>
