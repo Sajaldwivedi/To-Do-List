@@ -8,7 +8,7 @@ export function Sidebar() {
   const location = useLocation();
   
   const categories = [
-    { id: "today", name: "Today", icon: Sun, path: "/" },
+    { id: "home", name: "Home", icon: Sun, path: "/" },
     { id: "planned", name: "Planned", icon: Calendar, path: "/planned" },
     { id: "personal", name: "Personal", icon: User, path: "/personal" },
     { id: "work", name: "Work", icon: Briefcase, path: "/work" },

@@ -14,7 +14,7 @@ export function TaskProgress({ total, completed, category, className }: TaskProg
   // Determine color based on category
   const getColorClass = () => {
     switch (category) {
-      case "today":
+      case "home":
         return "bg-yellow-500";
       case "planned":
         return "bg-blue-500";

@@ -26,7 +26,7 @@ export function CategorySummary({
         <div className="flex items-center gap-3 mb-3">
           <div className={cn(
             "w-10 h-10 rounded-full flex items-center justify-center",
-            id === "today" && "bg-yellow-100",
+            id === "home" && "bg-yellow-100",
             id === "planned" && "bg-blue-100",
             id === "personal" && "bg-orange-100",
             id === "work" && "bg-purple-100",
@@ -35,7 +35,7 @@ export function CategorySummary({
             <Icon 
               className={cn(
                 "h-5 w-5",
-                id === "today" && "text-yellow-500",
+                id === "home" && "text-yellow-500",
                 id === "planned" && "text-blue-500",
                 id === "personal" && "text-orange-500",
                 id === "work" && "text-purple-500",
