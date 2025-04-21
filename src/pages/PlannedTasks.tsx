@@ -2,8 +2,7 @@
 import { useState } from "react";
 import { AppLayout } from "@/components/AppLayout";
 import { TaskItem } from "@/components/TaskItem";
-import { UserHeader } from "@/components/UserHeader";
-import { ArrowLeft, MoreVertical } from "lucide-react";
+import { ArrowLeft, History, CalendarDays } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -11,11 +10,15 @@ import { useTasks } from "@/hooks/useTasks";
 import { Confetti } from "@/components/Confetti";
 import { TaskInput } from "@/components/TaskInput";
 import { TaskProgress } from "@/components/TaskProgress";
+import { TaskHistory } from "@/components/TaskHistory";
+import { useAuth } from "@/contexts/AuthContext";
 
 const PlannedTasks = () => {
   const isMobile = useIsMobile();
   const { tasks, addTask, removeTask, toggleTask } = useTasks([], "planned");
   const [showConfetti, setShowConfetti] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
+  const { user } = useAuth();
 
   const handleRemove = (id: string) => {
     removeTask(id);
@@ -37,9 +40,11 @@ const PlannedTasks = () => {
                 </Link>
               )}
               
-              <div className="flex items-center">
-                <UserHeader hideGreeting={true} />
-                <div className="ml-2">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+                  <CalendarDays className="h-5 w-5 text-purple-500" />
+                </div>
+                <div>
                   <h1 className="text-xl font-bold">Planned</h1>
                   {tasks.length > 0 && (
                     <p className="text-sm text-muted-foreground">{tasks.length} tasks</p>
@@ -47,9 +52,15 @@ const PlannedTasks = () => {
                 </div>
               </div>
               
-              <Button variant="ghost" size="icon">
-                <MoreVertical className="h-5 w-5" />
-              </Button>
+              {user && (
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  onClick={() => setShowHistory(true)}
+                >
+                  <History className="h-5 w-5" />
+                </Button>
+              )}
             </div>
             
             <div className="bg-white rounded-2xl p-4 shadow-sm min-h-[210px]">
@@ -84,6 +95,11 @@ const PlannedTasks = () => {
           made with <span className="inline align-middle" style={{ color: "#fff" }}>🤍</span> by Sajal
         </footer>
       </div>
+      <TaskHistory
+        isOpen={showHistory}
+        onClose={() => setShowHistory(false)}
+        category="planned"
+      />
     </AppLayout>
   );
 };

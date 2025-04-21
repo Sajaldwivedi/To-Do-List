@@ -19,11 +19,11 @@ export function Sidebar() {
     <aside className="w-64 border-r border-todo-yellow/30 p-4 hidden md:block">
       <div className="flex items-center gap-2 mb-6">
         <Avatar>
-          <AvatarImage src="/lovable-uploads/f6f18b60-e2ac-4056-87e4-3b1525240196.png" alt="Avatar" />
-          <AvatarFallback>EN</AvatarFallback>
+          <AvatarImage src="/todo-illustration.svg" alt="Task Manager" />
+          <AvatarFallback>TM</AvatarFallback>
         </Avatar>
         <div>
-          <h2 className="font-semibold">Hello Ender</h2>
+          <h2 className="font-semibold">Task Manager</h2>
         </div>
       </div>
       

@@ -1,8 +1,7 @@
-
 import { useState, useEffect } from "react";
 import { AppLayout } from "@/components/AppLayout";
 import { UserHeader } from "@/components/UserHeader";
-import { Sun, Calendar, User, Briefcase, ShoppingBag, MoreVertical, ArrowLeft } from "lucide-react";
+import { Sun, Calendar, User, Briefcase, ShoppingBag, MoreVertical, ArrowLeft, History } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -10,17 +9,21 @@ import { useTasks } from "@/hooks/useTasks";
 import { CategorySummary } from "@/components/CategorySummary";
 import { TaskProgress } from "@/components/TaskProgress";
 import { TaskInput } from "@/components/TaskInput";
+import { TaskHistory } from "@/components/TaskHistory";
+import { useAuth } from "@/contexts/AuthContext";
 
 const TodayTasks = () => {
   const isMobile = useIsMobile();
-  const { tasks: todayTasks, addTask, toggleTask } = useTasks([], "today");
+  const { tasks: todayTasks, addTask, toggleTask, removeTask } = useTasks([], "today");
   const { tasks: plannedTasks } = useTasks([], "planned");
   const { tasks: personalTasks } = useTasks([], "personal");
   const { tasks: workTasks } = useTasks([], "work");
   const { tasks: shoppingTasks } = useTasks([], "shopping");
   
   const [completedToday, setCompletedToday] = useState(0);
-  
+  const [showHistory, setShowHistory] = useState(false);
+  const { user } = useAuth();
+
   // Calculate completed tasks for today
   useEffect(() => {
     const completed = todayTasks.filter(task => task.completed).length;
@@ -89,14 +92,28 @@ const TodayTasks = () => {
                 </Link>
               )}
               
-              <div className="flex-1">
-                <UserHeader hideGreeting={true} />
-                <h1 className="text-2xl font-bold">Dashboard</h1>
+              <div className="flex-1 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+                    <Sun className="h-5 w-5 text-yellow-500" />
+                  </div>
+                  <div>
+                    <h1 className="text-xl font-bold">Today</h1>
+                    {todayTasks.length > 0 && (
+                      <p className="text-sm text-muted-foreground">{todayTasks.length} tasks</p>
+                    )}
+                  </div>
+                </div>
+                {user && (
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    onClick={() => setShowHistory(true)}
+                  >
+                    <History className="h-5 w-5" />
+                  </Button>
+                )}
               </div>
-              
-              <Button variant="ghost" size="icon">
-                <MoreVertical className="h-5 w-5" />
-              </Button>
             </div>
 
             {/* Prominent Date Display */}
@@ -150,10 +167,15 @@ const TodayTasks = () => {
             </div>
           </div>
         </div>
-        <footer className="w-full text-xs text-todo-gray/70 mt-8 text-center select-none">
-          made with <span className="inline align-middle" style={{ color: "#fff" }}>🤍</span> by Sajal
-        </footer>
+        <TaskHistory
+          isOpen={showHistory}
+          onClose={() => setShowHistory(false)}
+          category="today"
+        />
       </div>
+      <footer className="w-full text-xs text-todo-gray/70 mt-8 text-center select-none">
+        made with <span className="inline align-middle" style={{ color: "#fff" }}>🤍</span> by Sajal
+      </footer>
     </AppLayout>
   );
 };

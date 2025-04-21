@@ -3,14 +3,28 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAQuf00ZgSDJ-c3xllPcwGrdzXaCb7xz54",
+  authDomain: "tick-tick-3370c.firebaseapp.com",
+  projectId: "tick-tick-3370c",
+  storageBucket: "tick-tick-3370c.firebasestorage.app",
+  messagingSenderId: "518650115104",
+  appId: "1:518650115104:web:d98dfd6ea701e971f33845",
+  measurementId: "G-T6VKKXRFNW"
 };
+
+// Debug logging
+console.log('Initializing Firebase with config:', {
+  apiKey: firebaseConfig.apiKey,
+  authDomain: firebaseConfig.authDomain,
+  projectId: firebaseConfig.projectId
+});
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+
+// Verify initialization
+console.log('Firebase initialized:', {
+  authInitialized: auth !== null,
+  dbInitialized: db !== null
+});

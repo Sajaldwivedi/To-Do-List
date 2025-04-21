@@ -32,7 +32,7 @@ const categories = [
 export default function Home() {
   return (
     <AppLayout>
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 min-h-[calc(100vh-120px)]">
         <h1 className="text-3xl font-bold mb-8">Welcome to Your Task Manager</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {categories.map((category) => (
@@ -46,6 +46,9 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <footer className="text-center py-4 text-sm text-muted-foreground">
+        made with <span className="inline align-middle" style={{ color: "#fff" }}>🤍</span> by Sajal
+      </footer>
     </AppLayout>
   );
 }
