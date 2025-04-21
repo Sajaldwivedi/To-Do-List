@@ -2,6 +2,7 @@ import { LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { TaskProgress } from "./TaskProgress";
+import { useNavigate } from "react-router-dom";
 
 interface CategorySummaryProps {
   id: string;
@@ -20,8 +21,21 @@ export function CategorySummary({
   totalTasks, 
   completedTasks 
 }: CategorySummaryProps) {
+  const navigate = useNavigate();
+
+  const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    navigate(path);
+  };
+
   return (
-    <Link to={path} className="block">
+    <div 
+      role="link"
+      tabIndex={0}
+      onClick={handleClick}
+      onTouchEnd={handleClick}
+      className="block cursor-pointer"
+    >
       <div className="bg-white rounded-xl p-4 shadow-sm hover:shadow transition-shadow">
         <div className="flex items-center gap-3 mb-3">
           <div className={cn(
@@ -61,6 +75,6 @@ export function CategorySummary({
           category={id} 
         />
       </div>
-    </Link>
+    </div>
   );
 }
