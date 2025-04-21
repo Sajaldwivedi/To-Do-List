@@ -4,51 +4,44 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 49 100% 97%;
+    --foreground: 220 30% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 30% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 30% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 160 84% 39%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 49 96% 89%;
+    --secondary-foreground: 220 30% 20%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 49 96% 60%;
+    --accent-foreground: 220 30% 20%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 160 84% 39%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 49 100% 97%;
+    --sidebar-foreground: 220 30% 20%;
+    --sidebar-primary: 160 84% 39%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 49 96% 89%;
+    --sidebar-accent-foreground: 220 30% 20%;
+    --sidebar-border: 49 70% 90%;
+    --sidebar-ring: 160 84% 39%;
   }
 
   .dark {
@@ -97,38 +90,23 @@
 
   body {
     @apply bg-background text-foreground;
-    background: linear-gradient(135deg, #1A1F2C 0%, #2C2042 100%);
-    min-height: 100vh;
-    font-family: 'Inter', sans-serif;
   }
 }
 
-@layer components {
-  .todo-card {
-    @apply bg-white/10 backdrop-blur-lg rounded-2xl shadow-lg border border-white/20;
+@layer utilities {
+  .yellow-gradient {
+    @apply bg-gradient-to-b from-todo-yellow-light to-todo-yellow;
   }
-
-  .todo-gradient {
-    background: linear-gradient(135deg, #9b87f5 0%, #7E69AB 100%);
+  
+  .yellow-gradient-soft {
+    @apply bg-gradient-to-b from-todo-yellow-light via-todo-yellow-light to-todo-yellow/30;
   }
-
-  .todo-input {
-    @apply bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl px-4 py-3 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-todo-primary/50 transition-all duration-300;
+  
+  .task-card {
+    @apply bg-white rounded-2xl shadow-sm hover:shadow-md transition-all p-4 flex items-center gap-3;
   }
-
-  .todo-checkbox {
-    @apply h-5 w-5 rounded-full border-2 border-todo-primary flex items-center justify-center transition-all duration-300 cursor-pointer;
-  }
-
-  .todo-checkbox-checked {
-    @apply bg-todo-primary border-todo-primary;
-  }
-
-  .todo-item-completed {
-    @apply line-through opacity-60;
-  }
-
-  .sparkle {
-    @apply inline-block animate-bounce-small;
+  
+  .icon-container {
+    @apply flex items-center justify-center w-10 h-10 rounded-full;
   }
 }

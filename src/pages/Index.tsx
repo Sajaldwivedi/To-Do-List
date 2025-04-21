@@ -1,87 +1,47 @@
 
-import { useState, useEffect } from 'react';
-import AddTodo from '@/components/AddTodo';
-import TodoList from '@/components/TodoList';
-import { Todo } from '@/components/TodoItem';
+import { Sun, Calendar, User, Briefcase, ShoppingBag } from "lucide-react";
+import { AppLayout } from "@/components/AppLayout";
+import { CategoryCard } from "@/components/CategoryCard";
+import { UserHeader } from "@/components/UserHeader";
+import { useIsMobile } from "@/hooks/use-mobile";
+
+const categories = [
+  { id: "today", name: "Today", icon: Sun, path: "/" },
+  { id: "planned", name: "Planned", icon: Calendar, path: "/planned" },
+  { id: "personal", name: "Personal", icon: User, path: "/personal" },
+  { id: "work", name: "Work", icon: Briefcase, path: "/work" },
+  { id: "shopping", name: "Shopping", icon: ShoppingBag, path: "/shopping" }
+];
 
 const Index = () => {
-  const [todos, setTodos] = useState<Todo[]>(() => {
-    // Load todos from localStorage if available
-    const savedTodos = localStorage.getItem('todos');
-    if (savedTodos) {
-      try {
-        return JSON.parse(savedTodos);
-      } catch (e) {
-        console.error('Error parsing saved todos:', e);
-        return [];
-      }
-    }
-    return [];
-  });
-
-  // Save todos to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
-
-  const addTodo = (text: string) => {
-    const newTodo: Todo = {
-      id: Date.now().toString(),
-      text,
-      completed: false
-    };
-    setTodos([newTodo, ...todos]);
-  };
-
-  const toggleTodo = (id: string) => {
-    setTodos(
-      todos.map(todo =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
-
-  const deleteTodo = (id: string) => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  };
+  const isMobile = useIsMobile();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6">
-      <div className="w-full max-w-md">
-        <div className="todo-card p-6 mb-10 shadow-xl animate-scale-in">
-          {/* Header */}
-          <div className="text-center mb-10">
-            <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">
-              <span className="sparkle mr-1">✨</span> 
-              TickTick 
-              <span className="sparkle ml-1">✨</span>
-            </h1>
-            <div className="h-1 w-20 mx-auto my-4 todo-gradient rounded-full"></div>
+    <AppLayout>
+      <div className="yellow-gradient-soft min-h-screen -m-4 md:-m-6 p-4 md:p-6 md:rounded-xl flex flex-col justify-between">
+        <div>
+          {isMobile && <UserHeader />}
+          
+          <div className="md:max-w-xl mx-auto">
+            <div className="space-y-3">
+              {categories.map((category) => (
+                <CategoryCard
+                  key={category.id}
+                  id={category.id}
+                  name={category.name}
+                  icon={category.icon}
+                  path={category.path}
+                />
+              ))}
+            </div>
           </div>
-
-          {/* Add Todo Form */}
-          <AddTodo onAdd={addTodo} />
-
-          {/* Todo List */}
-          <TodoList 
-            todos={todos} 
-            onToggle={toggleTodo} 
-            onDelete={deleteTodo} 
-          />
         </div>
-
-        {/* Stats section */}
-        {todos.length > 0 && (
-          <div className="text-center text-white/60 text-sm animate-fade-in">
-            <p>
-              {todos.filter(t => t.completed).length} completed / {todos.length} total tasks
-            </p>
-          </div>
-        )}
+        <footer className="w-full text-xs text-todo-gray/70 mt-8 text-center select-none">
+          made with <span className="inline align-middle" style={{ color: "#fff" }}>🤍</span> by Sajal
+        </footer>
       </div>
-    </div>
+    </AppLayout>
   );
 };
 
 export default Index;
-
