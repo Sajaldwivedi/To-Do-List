@@ -70,20 +70,26 @@ export function TaskHistory({ isOpen, onClose, category }: {
             {history.map((task) => (
               <div
                 key={task.id}
-                className="p-4 border rounded-lg bg-background"
+                className={`p-4 border rounded-lg ${task.completed ? 'bg-green-50' : 'bg-background'}`}
               >
-                <h4 className="font-medium">{task.title}</h4>
-                <p className="text-sm text-muted-foreground">
-                  Created: {task.createdAt.toLocaleDateString()}
-                </p>
-                {task.completedAt && (
-                  <p className="text-sm text-muted-foreground">
-                    Completed: {task.completedAt.toLocaleDateString()}
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="font-medium">{task.title}</h4>
+                  <span className={`text-sm px-2 py-1 rounded-full ${task.completed ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                    {task.completed ? 'Completed' : 'Pending'}
+                  </span>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm text-muted-foreground flex justify-between">
+                    <span>Created:</span>
+                    <span>{task.createdAt.toLocaleString()}</span>
                   </p>
-                )}
-                <span className={`text-sm ${task.completed ? 'text-green-500' : 'text-yellow-500'}`}>
-                  {task.completed ? 'Completed' : 'Pending'}
-                </span>
+                  {task.completedAt && (
+                    <p className="text-sm text-muted-foreground flex justify-between">
+                      <span>Completed:</span>
+                      <span>{task.completedAt.toLocaleString()}</span>
+                    </p>
+                  )}
+                </div>
               </div>
             ))}
           </div>
