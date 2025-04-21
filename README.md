@@ -1,73 +1,105 @@
-# Welcome to your Lovable project
+# Modern Task Manager
 
-## Project info
+A beautiful and feature-rich task management application built with modern web technologies. Organize your tasks across different categories like Personal, Work, Shopping, and Planned tasks with a sleek and intuitive interface.
 
-**URL**: https://lovable.dev/projects/daaeb54c-5439-45f1-8c7a-0ca83052d71e
+## ✨ Features
 
-## How can I edit this code?
+- **Authentication**: Secure user authentication powered by Firebase
+- **Real-time Database**: Tasks are stored and synced in real-time using Firebase Firestore
+- **Task Categories**: Organize tasks into Personal, Work, Shopping, and Planned categories
+- **Task Progress Tracking**: Visual progress indicators for task completion
+- **Task History**: View and manage your task completion history
+- **Beautiful UI**: Modern and responsive design using Shadcn UI components
+- **Dark Mode Support**: Built-in dark mode for comfortable viewing
+- **Toast Notifications**: Elegant notifications for user actions
+- **Responsive Layout**: Works seamlessly across desktop and mobile devices
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+- **Frontend Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **UI Components**: Shadcn UI (Radix UI + Tailwind CSS)
+- **State Management**: React Query
+- **Authentication**: Firebase Auth
+- **Database**: Firebase Firestore
+- **Routing**: React Router DOM
+- **Form Handling**: React Hook Form with Zod validation
+- **Styling**: Tailwind CSS with animations
+- **Charts**: Recharts for data visualization
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/daaeb54c-5439-45f1-8c7a-0ca83052d71e) and start prompting.
+## 🚀 Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v16 or higher)
+- npm or yarn
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/To-Do-List.git
+   cd To-Do-List
+   ```
 
-Follow these steps:
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. Create a Firebase project and add your configuration:
+   - Create a new project in Firebase Console
+   - Enable Authentication and Firestore
+   - Copy your Firebase config and add it to the environment variables
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+4. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🏗️ Project Structure
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/     # Reusable UI components
+├── contexts/       # React contexts (Auth, etc.)
+├── pages/          # Route components
+├── lib/           # Utility functions and configurations
+└── App.tsx        # Main application component
 ```
 
-**Edit a file directly in GitHub**
+## 🔒 Authentication
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The application uses Firebase Authentication for secure user management. Features include:
+- Email/Password authentication
+- Secure session management
+- Protected routes
+- User profile management
 
-**Use GitHub Codespaces**
+## 💾 Database
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Firebase Firestore is used as the database with the following collections:
+- `users`: User profiles and preferences
+- `tasks`: Task data with categories and completion status
+- `history`: Task completion history
 
-## What technologies are used for this project?
+## 🎨 UI/UX Features
 
-This project is built with:
+- Responsive design that works on all devices
+- Smooth animations and transitions
+- Intuitive task management interface
+- Progress tracking and visualization
+- Category-based task organization
+- Toast notifications for user feedback
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📝 License
 
-## How can I deploy this project?
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Simply open [Lovable](https://lovable.dev/projects/daaeb54c-5439-45f1-8c7a-0ca83052d71e) and click on Share -> Publish.
+## 🤝 Contributing
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Contributions are welcome! Please feel free to submit a Pull Request.
