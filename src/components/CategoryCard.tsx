@@ -1,10 +1,5 @@
 import { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { History } from "lucide-react";
-import { useState } from "react";
-import { TaskHistory } from "./TaskHistory";
-import { useAuth } from "@/contexts/AuthContext";
 import { Card } from "./ui/card";
 import { useNavigate } from "react-router-dom";
 
@@ -18,12 +13,8 @@ interface CategoryCardProps {
 
 export function CategoryCard({ id, name, count, icon: Icon, path }: CategoryCardProps) {
   const navigate = useNavigate();
-  const [showHistory, setShowHistory] = useState(false);
-  const { user } = useAuth();
-
   return (
-    <>
-      <Card className="p-6 relative group cursor-pointer" onClick={() => navigate(path)}>
+    <Card className="p-6 relative cursor-pointer" onClick={() => navigate(path)}>
         <div className={cn(
           "w-12 h-12 rounded-full mb-4 flex items-center justify-center",
           id === "home" && "bg-yellow-100",
@@ -47,25 +38,6 @@ export function CategoryCard({ id, name, count, icon: Icon, path }: CategoryCard
             <p className="text-sm text-muted-foreground">{count} tasks</p>
           )}
         </div>
-        {user && (
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity"
-            onClick={(e) => {
-              e.stopPropagation();
-              setShowHistory(true);
-            }}
-          >
-            <History className="h-4 w-4" />
-          </Button>
-        )}
-      </Card>
-      <TaskHistory
-        isOpen={showHistory}
-        onClose={() => setShowHistory(false)}
-        category={id}
-      />
-    </>
+    </Card>
   );
 }
