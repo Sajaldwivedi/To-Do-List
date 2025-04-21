@@ -22,7 +22,7 @@ export function AppLayout({ children }: AppLayoutProps) {
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b px-4 py-3 flex justify-between items-center">
-        <h1 className="text-xl font-semibold">Task Manager</h1>
+        <h1 className="text-xl font-bold">TickTick</h1>
         <div>
           {user ? (
             <DropdownMenu>
